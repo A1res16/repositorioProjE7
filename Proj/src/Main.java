@@ -1,8 +1,7 @@
 
-
 /**@author team 7
  * @version 0.1
- * Esta classe é a classe principal, onde reside o metodo main
+ * Esta classe é a classe principal, onde reside o metodo main, o teste
  * 
  * Apresenta um menu interativo para o utilizador com opcoes de administrador e aluno
  * 
