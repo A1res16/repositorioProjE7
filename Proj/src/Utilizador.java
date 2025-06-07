@@ -8,6 +8,7 @@
  * Apresenta os atributos de aluno e administrador, com alguns métodos, e é a SuperClasse deste projeto
  */
 
+//Classe Utilizador (dois)
 
 public class Utilizador 
 {
