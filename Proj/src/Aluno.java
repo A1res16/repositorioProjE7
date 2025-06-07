@@ -10,6 +10,8 @@
 
 import java.util.ArrayList;
 
+//Classe aluno (um utili)
+
 public class Aluno extends Utilizador 
 {
    private ArrayList<ModuloFrequentado> modulosFrequentados;
