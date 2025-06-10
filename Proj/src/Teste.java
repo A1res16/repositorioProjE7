@@ -1,6 +1,6 @@
 
 /**@author team 7
- * @version 0.2
+ * @version 0.3
  * 
  *  Esta classe é a classe principal, onde reside o metodo main, o teste
  * 
@@ -32,46 +32,81 @@ public class Teste
 		   
 		   switch (opcao)
 		   {
-		      case 1:
-		    	  System.out.println("\n === Registo === ");
-		    	  System.out.println("Nome: ");
-		    	  String nome = scanner.nextLine();
-		    	  
-		    	  System.out.println("Email: ");
-		    	  String email = scanner.nextLine();
-		    	  
-		    	  System.out.println("Password: ");
-		    	  String password = scanner.nextLine();
-		    	  
-		    	  System.out.println("Tipo de Utilizador (aluno/administrador): ");
-		    	  String tipo = scanner.nextLine().toLowerCase();
-		    	  
-		    	  try
-		    	  {
-		    		  if (tipo.equals("aluno"))
-		    		  {
-		    			  Aluno aluno = new Aluno(nome, email, password);
-		    			  gere.adicionarUtilizador(aluno);
-		    			  System.out.println("Aluno registado com sucesso!");
-		    		  }
-		    		  else if (tipo.equals("administrador"))
-		    		  {
-		    			  Administrador admin = new Administrador(nome, email, password, "administrador");
-		    			  gere.adicionarUtilizador(admin);
-		    			  System.out.println("Administrador registado com sucesso!");
-		    		  }
-		    		  else
-		    		  {
-		    			  System.out.println("Tipo invalido! Tente novamente.");
-		    		  }
-		    		  
-		    	  } catch (DadosInvalidosException e)
-		    	  {
-		    		  System.out.println("Erro no registo: " + e.getMessage());
-		    	  }
-		    	  break;
-		    	  
-		      case 2:
+		   case 1:
+			    System.out.println("\n === Registo === ");
+			    System.out.println("Nome: ");
+			    String nome = scanner.nextLine();
+			    
+			    System.out.println("Email: ");
+			    String email = scanner.nextLine();
+			    
+			    System.out.println("Password: ");
+			    String password = scanner.nextLine();
+			    
+			    System.out.println("Tipo de Utilizador (aluno/administrador): ");
+			    String tipo = scanner.nextLine().toLowerCase();
+			    
+			    try
+			    {
+			        Utilizador novoUtilizador = null;
+			        if (tipo.equals("aluno"))
+			        {
+			            novoUtilizador = new Aluno(nome, email, password);
+			            gere.adicionarUtilizador(novoUtilizador);
+			            System.out.println("Aluno registado com sucesso!");
+			        }
+			        else if (tipo.equals("administrador"))
+			        {
+			            novoUtilizador = new Administrador(nome, email, password, "administrador");
+			            gere.adicionarUtilizador(novoUtilizador);
+			            System.out.println("Administrador registado com sucesso!");
+			        }
+			        else
+			        {
+			            System.out.println("Tipo invalido! Tente novamente.");
+			            break;
+			        }
+
+			        // Redirecionar automaticamente para login
+			        System.out.println("\nRedirecionando para o login...\n");
+
+			        System.out.println("Email: ");
+			        String loginEmail = scanner.nextLine();
+
+			        System.out.println("Password: ");
+			        String loginPassword = scanner.nextLine();
+
+			        Utilizador autenticado = gere.autenticar(loginEmail, loginPassword);
+
+			        if (autenticado == null)
+			        {
+			            System.out.println("Credenciais invalidas ou Utilizador nao encontrado.");
+			        }
+			        else if (!autenticado.isAtivo())
+			        {
+			            System.out.println("Conta desativada. Contacte um administrador da Plataforma.");
+			        }
+			        else
+			        {
+			            System.out.println("Login efetuado com sucesso!\n");
+
+			            if (autenticado instanceof Aluno)
+			            {
+			                ((Aluno) autenticado).mostrarMenu(gere);
+			            }
+			            else if (autenticado instanceof Administrador)
+			            {
+			                ((Administrador) autenticado).mostrarMenu(gere);
+			            }
+			        }
+
+			    } catch (DadosInvalidosException e)
+			    {
+			        System.out.println("Erro no registo: " + e.getMessage());
+			    }
+			    break;
+			    
+		   case 2:
 		    	  System.out.println("\n === Login === ");
 		    	  System.out.println("Email: ");
 		    	  String loginEmail = scanner.nextLine();
