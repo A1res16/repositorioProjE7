@@ -493,7 +493,7 @@ public class Main
 					System.out.println("\n +++ Menu do Aluno +++ ");
 					System.out.println("1. Ver Modulos Disponiveis");
 					System.out.println("2. Realizar um Quizz");
-					System.out.println("3. Concluir um Modulo");
+					//System.out.println("3. Concluir um Modulo");
 					System.out.println("0. Voltar ao Menu Principal");
 					System.out.println("Escolha uma opcao: ");
 					//Ler opcao do utilizador
@@ -574,7 +574,7 @@ public class Main
 						   }
 						   break;
 						   
-					   case "3":
+					  /* case "3":
 						   System.out.println(" +++ Concluir um Modulo +++ ");
 						   for (int i = 0; i < modulos.size(); i++)
 						   {
@@ -592,7 +592,7 @@ public class Main
 						   {
 							   System.out.println("O modulo e invalido.");
 						   }
-						   break;
+						   break; */
 						   
 					   case "0":
 						   voltarAluno = true;

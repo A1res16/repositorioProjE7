@@ -24,6 +24,12 @@ public class Conteudo
 	   this.imagens = new ArrayList<>();
    }
    
+   public Conteudo()
+   {
+	   this.texto = texto;
+	   this.imagens = new ArrayList<>();
+   }
+   
    /*
     * Metodo para dizer como sera mostrado o texto no conteudo
     */

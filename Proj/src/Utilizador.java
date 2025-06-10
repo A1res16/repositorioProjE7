@@ -10,12 +10,15 @@
 
 //Classe Utilizador (dois)
 
+
 public class Utilizador 
 {
     private String nome;
     private String email;
     private String password;
     private String tipo; // Aluno ou Administrador
+    //add
+    private boolean ativo = true;
     
     /*
      * Constrói um Utilizador com parametros
@@ -147,6 +150,17 @@ public class Utilizador
 	{
 		this.tipo = tipo;
 	}
+	
+	public boolean isAtivo()
+	{
+		return ativo;
+	}
+	
+	public void setAtivo(boolean ativo) 
+	{
+		this.ativo = ativo;
+	}
+
 
 	@Override
 	public String toString() 

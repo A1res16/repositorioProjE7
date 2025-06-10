@@ -12,6 +12,9 @@ public class ModuloFrequentado
 	private EstadoModulo estado;
 	private Aluno aluno;
 	private Modulo modulo;
+	//add
+	private double notaQuizz;
+	private double notaExame;
 	 
 	 /*
 	  * Constroi um modulo frequentado com parametros
@@ -23,6 +26,8 @@ public class ModuloFrequentado
 		this.estado = estado;
 		this.aluno = aluno;
 		this.modulo = modulo;
+		this.notaQuizz = 0;
+		this.notaExame = 0;
 	}
 
 	public String getIdModulo() 
@@ -63,6 +68,47 @@ public class ModuloFrequentado
 	public void setModulo(Modulo modulo) 
 	{
 		this.modulo = modulo;
+	}
+	
+	//add
+	public double getNotaQuizz()
+	{
+		return notaQuizz;
+	}
+	
+	//add
+	public void setNotaQuizz(double notaQizz)
+	{
+		this.notaQuizz = notaQizz;
+	}
+	
+	//add
+	public double getNotaExame()
+	{
+		return notaExame;
+	}
+	
+	//add
+	public void setNotaExame(double notaExame)
+	{
+		this.notaExame = notaExame;
+	}
+	
+	//add
+	public void atualizarEstado()
+	{
+		if (notaExame >= 10)
+		{
+			estado = EstadoModulo.CONCLUIDO;
+		}
+		else if (notaQuizz > 0)
+		{
+			estado = EstadoModulo.INICIADO;
+		}
+		else
+		{
+			estado = EstadoModulo.NAO_INICIADO;
+		}
 	}
 
 	@Override

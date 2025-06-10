@@ -12,7 +12,17 @@ import java.util.ArrayList;
 
 public class Quizz 
 {
+   private Modulo modulo; 
    private ArrayList<Pergunta> perguntas;
+   
+   /*
+    * Constrói um quizz com argumento
+    */
+   public Quizz(Modulo modulo)
+   {
+	   this.modulo = modulo;
+	   this.perguntas = new ArrayList<>();
+   }
    
    /*
     * Constrói um quizz sem argumento
@@ -22,7 +32,17 @@ public class Quizz
 	   this.perguntas = new ArrayList<>();
    }
    
-   /*
+   public Modulo getModulo() 
+   {
+	   return modulo;
+   }
+
+   public void setModulo(Modulo modulo) 
+   {
+	   this.modulo = modulo;
+   }
+
+/*
     * Metodo para adicionar uma pergunta a um quizz
     */
    public void adicionarPergunta(Pergunta p)

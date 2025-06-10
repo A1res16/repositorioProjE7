@@ -11,9 +11,18 @@ import java.util.ArrayList;
 
 public class RespostaQuizz 
 {
+   //add
+   private Quizz quizz;
+   private float nota;
    private String idQuizz;
    private String idModulo;
    private ArrayList<Resposta> respostas;
+   
+   public RespostaQuizz(Quizz quizz, float nota)
+   {
+	   this.quizz = quizz;
+	   this.nota = nota;
+   }
    
    /*
     * Constrói uma resposta do quizz com parametros
@@ -62,8 +71,18 @@ public class RespostaQuizz
    {
 	   this.respostas = respostas;
    }
+   
+   public Quizz getQuizz() 
+   {
+	return quizz;
+   }
+   
+   public float getNota() 
+   {
+	return nota;
+   }
 
-   @Override
+@Override
    public String toString() 
    {
 	   return "RespostaQuizz [idQuizz = " + idQuizz + ", idModulo = " + idModulo + ", respostas = " + respostas + "]";

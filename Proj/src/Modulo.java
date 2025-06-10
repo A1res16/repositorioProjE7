@@ -34,6 +34,20 @@ public class Modulo
 		this.quizz = quizz;
 	}
    
+   /*
+    * Constroi um modulo com 4 parametros
+    * */
+   
+   public Modulo(String titulo, String descricao, int ordem, String objetivo)
+   {
+	   this.titulo = titulo;
+	   this.descricao = descricao;
+	   this.ordem = ordem;
+	   this.objetivo = objetivo;
+	   this.conteudos = new ArrayList<>();
+	   this.quizz = null;
+   }
+   
     /*
      * Metodo para adicionar conteúdos aos modulos 
      */
