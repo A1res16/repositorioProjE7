@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe é a que gere a plataforma
  * 
  * Ela pode criar, editar e remover modulos e quizzes.

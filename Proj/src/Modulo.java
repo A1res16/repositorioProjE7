@@ -2,7 +2,7 @@
 
 /**@author team 7
 
- * @version 0.1
+ * @version final
  * Esta classe guarda as informações de um modulo soobre os ODS
  * 
  * Apresenta os atributos e alguns metodos ligados ao administrador

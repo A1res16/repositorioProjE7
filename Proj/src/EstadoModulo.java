@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe é a classe do enum (enumeração)
  * 
  * É uma classe especial usada para representar

@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * 
  * Esta classe contem a  informacao de um exame final dos modulos
  */

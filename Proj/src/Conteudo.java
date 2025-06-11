@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe mostra o que contem em um conteudo
  * 
  * Apresenta os detalhes do que se diz o conteudo de um modulo

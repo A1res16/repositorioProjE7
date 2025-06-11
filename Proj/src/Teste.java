@@ -1,6 +1,6 @@
 
 /**@author team 7
- * @version 0.3
+ * @version 0.3 (Usar esta classe para compilar o programa todo)
  * 
  *  Esta classe é a classe principal, onde reside o metodo main, o teste
  * 

@@ -56,13 +56,81 @@ public class Aluno extends Utilizador
    }
    
    //add
-   public void listarModulosComEstado()
+   public void listarModulosComEstado(Gere gere)
    {
-	   System.out.println("\n +++ Modulos Disponiveis --- ");
+	   ArrayList<Modulo> todos = gere.getModulos();
+	   
+	   System.out.println("\n +++ Modulos Disponiveis para Iniciar +++ ");
+	   for (Modulo m : todos)
+	   {
+		   //metodo caudal
+		   boolean jaFrequenta = modulosFrequentados.stream().anyMatch(mf -> mf.getModulo().equals(m));
+		   if (!jaFrequenta)
+		   {
+			   System.out.println("- " + m.getTitulo());
+		   }
+	   }
+	   
+	   System.out.println("\n +++ Modulos que Estou a Frequentar +++ ");
 	   for (ModuloFrequentado mf : modulosFrequentados)
 	   {
            System.out.println("Modulo: " + mf.getModulo().getTitulo() + " | Estado: " + mf.getEstado());
 	   }
+   }
+   
+   //add
+   public void iniciarModulo(Gere gere)
+   {
+	   ArrayList<Modulo> todos = gere.getModulos();
+	   ArrayList<Modulo> disponiveis = new ArrayList<>();
+	   
+	   for (Modulo m : todos)
+	   {
+		   boolean jaFrequenta = modulosFrequentados.stream().anyMatch(mf -> mf.getModulo().equals(m));
+		   if (!jaFrequenta)
+		   {
+			   disponiveis.add(m);
+		   }
+	   }
+	   
+	   if (disponiveis.isEmpty())
+	   {
+		   System.out.println("Nao ha modulos disponiveis para iniciar.");
+		   return;
+	   }
+	   
+	   System.out.println("\n +++ Modulos Disponiveis +++ ");
+	   for (int i = 0; i < disponiveis.size(); i++)
+	   {
+		   System.out.println((i + 1) + ". " + disponiveis.get(i).getTitulo());
+	   }
+	   
+	   Scanner scanner = new Scanner(System.in);
+	   int opcao = -1;
+	   
+	   
+	   while (true)
+	   {
+		   try
+		   {
+			   System.out.println("Escolha um modulo para iniciar: ");
+			   opcao = Integer.parseInt(scanner.nextLine());
+			   
+			   if (opcao >= 1 && opcao <= disponiveis.size()) break;
+			   System.out.println("Indice invalido.");
+			   
+		   } 
+		   catch (NumberFormatException e)
+		   {
+			   System.out.println("Erro: insira um numero inteiro.");
+		   }
+	   }
+	   
+	   Modulo moduloEscolhido = disponiveis.get(opcao -1);
+	   ModuloFrequentado mf = new ModuloFrequentado(this, moduloEscolhido);
+	   modulosFrequentados.add(mf);
+	   
+	   System.out.println("Iniciaste o modulo: " + moduloEscolhido.getTitulo());
    }
    
    //add
@@ -124,15 +192,8 @@ public class Aluno extends Utilizador
 	   }
 	   
 	   //funcao para verificar se todos os modulos estao concluidos
-	   boolean todosConcluidos = true;
-	   for (ModuloFrequentado mf : modulosFrequentados)
-	   {
-		   if (!mf.getEstado().equals(EstadoModulo.CONCLUIDO))
-		   {
-			   todosConcluidos = false;
-			   break;
-		   }
-	   }
+	   boolean todosConcluidos = modulosFrequentados.stream().allMatch(mf -> mf.getNotaQuizz() >= 9.5);
+			  
 	   
 	   if (!todosConcluidos)
 	   {
@@ -154,9 +215,25 @@ public class Aluno extends Utilizador
 			   System.out.println((i + 1) + ". " + alternativas.get(i));
 		   }
 		   
-		   System.out.println("Qual a tua resposta: ");
-		   int resposta = scanner.nextInt();
-		   scanner.nextLine();
+		   int resposta = -1;
+           while (true) 
+           {
+               try 
+               {
+                   System.out.print("Qual e a tua resposta (numero inteiro): ");
+                   resposta = Integer.parseInt(scanner.nextLine());
+                   
+                   if (resposta >= 1 && resposta <= alternativas.size()) break;
+                   System.out.println("Opcao invalida.");
+                   
+               } 
+               catch (NumberFormatException e) 
+               {
+                   System.out.println("Erro: insira um numero inteiro.");
+               }
+           }
+		   
+		   
 		   String respostaDada = alternativas.get(resposta - 1);
 		   if (respostaDada.equalsIgnoreCase(p.getRespostaCorreta()))
 		   {
@@ -232,8 +309,10 @@ public class Aluno extends Utilizador
 			   System.out.println((i + 1) + ". " + p.getAlternativas().get(i));
 		   }
 		   
-		   System.out.print("Qual a tua resposta: ");
+		   System.out.print("Qual a tua resposta (insira um numero inteiro): ");
 		   int resposta = scanner.nextInt();
+		   scanner.nextLine();
+		   
 		   String respostaDada = p.getAlternativas().get(resposta - 1); 
 		   
 		   if (respostaDada.equalsIgnoreCase(p.getRespostaCorreta()))
@@ -283,6 +362,7 @@ public class Aluno extends Utilizador
 	   float notaFinal = realizarQuizz(quizz);
 	   System.out.printf("\nModulo: %s | Nota Final: %.2f valores\n", mf.getModulo().getTitulo(), notaFinal);
 	   
+	   quizz.setModulo(mf.getModulo());
 	   RespostaQuizz rq = new RespostaQuizz(quizz, notaFinal);
 	   respostasQuizz.add(rq);
 	   mf.setNotaQuizz(notaFinal);
@@ -298,11 +378,12 @@ public class Aluno extends Utilizador
 	   do
 	   {
 		   System.out.println(" +++ Menu do Aluno +++ ");
-		   System.out.println("1. Listar os Modulos Disponiveis");
-		   System.out.println("2. Realizar um Quizz");
-		   System.out.println("3. Ver Nota de um Quizz");
-		   System.out.println("4. Fazer um Exame Final");
-		   System.out.println("5. Consultar o Historico de Notas");
+		   System.out.println("1. Iniciar um Modulo");
+		   System.out.println("2. Listar os Modulos Disponiveis");
+		   System.out.println("3. Realizar um Quizz");
+		   System.out.println("4. Ver Nota de um Quizz");
+		   System.out.println("5. Fazer um Exame Final");
+		   System.out.println("6. Consultar o Historico de Notas");
 		   System.out.println("0. Logout");
 		   System.out.println("Escolha uma opcao: ");
 		   opcao = scanner.nextInt();
@@ -311,22 +392,26 @@ public class Aluno extends Utilizador
 		   switch (opcao)
 		   {
 		      case 1: 
-		    	  listarModulosComEstado();
+		    	  iniciarModulo(gere);
 		    	  break;
 		    	  
 		      case 2:
-		    	  realizarQuizz(gere);
+		    	  listarModulosComEstado(gere);
 		    	  break;
 		    	  
 		      case 3:
-		    	  verNotaDoQuizz();
+		    	  realizarQuizz(gere);
 		    	  break;
 		    	  
 		      case 4:
-		    	  realizarExameFinal(gere);
+		    	  verNotaDoQuizz();
 		    	  break;
 		    	  
 		      case 5:
+		    	  realizarExameFinal(gere);
+		    	  break;
+		    	  
+		      case 6:
 		    	  consultarHistoricoNotas();
 		    	  break;
 		    	  

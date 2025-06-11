@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe guarda os detalhes das respostas em um quizz 
  * 
  * Apresenta atributos e o metodo adicionarResposta ao quizz

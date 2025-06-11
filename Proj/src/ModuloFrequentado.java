@@ -26,10 +26,24 @@ public class ModuloFrequentado
 		this.estado = estado;
 		this.aluno = aluno;
 		this.modulo = modulo;
-		this.notaQuizz = 0;
-		this.notaExame = 0;
+		this.notaQuizz = -1;
+		this.notaExame = -1;
 	}
-
+	
+	/*
+	 * Constroi um modulo frequentado quando o aluno inicia um modulo
+	 * */
+    
+	public ModuloFrequentado(Aluno aluno, Modulo modulo)
+	{
+		 this.idModulo = modulo.getTitulo(); // Ou usa um ID único se tiver
+	     this.modulo = modulo;
+	     this.aluno = aluno;
+	     this.estado = EstadoModulo.NAO_INICIADO;
+	     this.notaQuizz = -1;
+	     this.notaExame = -1;
+	}
+	
 	public String getIdModulo() 
 	{
 		return idModulo;
@@ -97,11 +111,11 @@ public class ModuloFrequentado
 	//add
 	public void atualizarEstado()
 	{
-		if (notaExame >= 10)
+		if (notaExame >= 9.5 && notaQuizz >= 9.5)
 		{
 			estado = EstadoModulo.CONCLUIDO;
 		}
-		else if (notaQuizz > 0)
+		else if (notaQuizz >= 0)
 		{
 			estado = EstadoModulo.INICIADO;
 		}
@@ -114,8 +128,10 @@ public class ModuloFrequentado
 	@Override
 	public String toString() 
 	{
-		return "ModuloFrequentado [idModulo = " + idModulo + ", estado = " + estado + ", aluno = " + aluno + ", modulo = "
-				+ modulo + "]";
+		return "Modulo: " + modulo.getTitulo() +
+	               " | Estado: " + estado +
+	               " | Nota Quizz: " + notaQuizz +
+	               " | Nota Exame: " + notaExame;
 	}
 	
 	

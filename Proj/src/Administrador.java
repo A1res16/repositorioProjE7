@@ -118,6 +118,7 @@ public class Administrador extends Utilizador
 	    		   
 	    		   System.out.println("Qual a nova Ordem do Modulo(numero inteiro): ");
 	    		   int novaOrdem = scanner.nextInt();
+	    		   scanner.nextLine();
 	    		   
 	    		   System.out.println("Qual o novo objetivo do Modulo: ");
 	    		   String novoObjetivo = scanner.nextLine();
@@ -415,24 +416,6 @@ public class Administrador extends Utilizador
                    break;
 			
 			   case 9:
-				   if (gere.getModulos().isEmpty()) {
-					    Modulo teste = new Modulo("Teste", "Descricao de teste", 1, "Aprender o sistema");
-					    Quizz quizz = new Quizz();
-
-					    ArrayList<String> alternativas = new ArrayList<>();
-					    alternativas.add("A");
-					    alternativas.add("B");
-					    alternativas.add("C");
-					    alternativas.add("D");
-
-					    Pergunta pergunta = new Pergunta("Qual é a letra correta?", alternativas, "A", "Porque sim.");
-					    quizz.adicionarPergunta(pergunta);
-					    teste.setQuizz(quizz);
-
-					    gere.adicionarModulo(teste);
-					    System.out.println("⚠️ Módulo de teste com quizz criado automaticamente.");
-					}
-
 				   gere.criarExameFinal();
 				   break;
 				   

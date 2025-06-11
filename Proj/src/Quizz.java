@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe cria um quizz para um modulo
  * 
  * Apresenta a opcao de adicionar e remover uma pergunta, assim como calcular a nota de um aluno no quizz feito

@@ -1,8 +1,3 @@
-/Aluno.class
-/Conteudo.class
-/DadosInvalidosException.class
-/EstadoModulo.class
-/Gere.class
 /Main.class
 /Modulo.class
 /ModuloFrequentado.class
@@ -10,7 +5,5 @@
 /Quizz.class
 /Resposta.class
 /RespostaQuizz.class
-/Utilizador.class
-/Administrador.class
-/ExameFinal.class
 /Teste.class
+/Utilizador.class

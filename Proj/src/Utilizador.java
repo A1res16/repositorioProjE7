@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe guarda informações sobre um aluno e um administrador 
  * da plataforma de E-Learninng de Sustentabilidade
  * 

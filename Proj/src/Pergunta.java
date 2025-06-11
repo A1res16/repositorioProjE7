@@ -1,7 +1,7 @@
 
 
 /**@author team 7
- * @version 0.1
+ * @version final
  * Esta classe gurda os detalhes de uma pergunta num quizz
  * 
  * Apresenta os atributos e os modificadores
